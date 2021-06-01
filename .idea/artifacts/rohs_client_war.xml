@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="rohs-client:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>rohs-client</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="rohs-client.war">
+      <element id="artifact" artifact-name="rohs-client:war exploded" />
+    </root>
+  </artifact>
+</component>
