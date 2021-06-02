@@ -14,7 +14,6 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-@ManagedBean(name = "receiver")
 @SessionScoped
 @MessageDriven(name = "Receiver", activationConfig = {
         @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "testQueue"),

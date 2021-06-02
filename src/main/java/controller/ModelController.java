@@ -18,6 +18,8 @@ import java.util.List;
 @Model
 public class ModelController {
 
+    private List<Procedure> proceduresFromAPI;
+
     @Produces
     @Named
     public List<Procedure> getProceduresFromAPI(){
