@@ -11,10 +11,12 @@
 </h:head>
 <h:body>
     <script>
-        function updatelist(message, channel, event) {
+        function updatelist() {
             console.log("updated");
+            location.reload();
         }
     </script>
+
     <h:panelGroup rendered="#{empty modelController.proceduresFromAPI}">
         <em>No procedures.</em>
     </h:panelGroup>
@@ -39,7 +41,9 @@
             #{procedure.status}
         </h:column>
     </h:dataTable>
-    <f:websocket channel="websocket" onmessage="updatelist" />
+    <f:websocket channel="websocket" onmessage="updatelist">
+        <f:ajax event="change" render=":proceduresTable" listener="#{modelController.proceduresFromAPI}" />
+    </f:websocket>
 
 
 </h:body>
