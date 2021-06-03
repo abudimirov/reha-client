@@ -1,5 +1,6 @@
 package controller;
 
+import client.PushBean;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import model.Procedure;
@@ -7,10 +8,15 @@ import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Model;
 import javax.enterprise.inject.Produces;
+import javax.faces.push.Push;
+import javax.faces.push.PushContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.ws.rs.core.Response;
+import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,16 +44,10 @@ public class ModelController {
             }
         }
 
-
         Type listOfProcedureObject = new TypeToken<ArrayList<Procedure>>() {}.getType();
         Gson gson = new Gson();
         List<Procedure> procedureList = gson.fromJson(inputString, listOfProcedureObject);
 
-        if (inputString != null) {
-            for (Procedure procedure : procedureList) {
-                System.out.println(procedure.toString());
-            }
-        }
         return procedureList;
     }
 }

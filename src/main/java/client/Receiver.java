@@ -7,6 +7,8 @@ import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.push.Push;
+import javax.faces.push.PushContext;
 import javax.inject.Inject;
 import javax.jms.Message;
 import javax.jms.MessageListener;
@@ -14,7 +16,6 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-@SessionScoped
 @MessageDriven(name = "Receiver", activationConfig = {
         @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "testQueue"),
         @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
@@ -26,9 +27,11 @@ public class Receiver implements MessageListener, Serializable {
     @Inject
     private ModelController modelController;
 
+    @Inject
+    PushBean pushBean;
 
     public void onMessage(Message rcvMessage) {
         procedureList = modelController.getProceduresFromAPI();
-
+        pushBean.sendUpdate();
     }
 }
